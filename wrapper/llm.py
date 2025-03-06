@@ -71,6 +71,29 @@ def llmdsr1_answer(question: str, chat_history: str,
         }
     )
 
+def llmdsv3_answer(question: str, chat_history: str,
+               search_result: str = "",
+               username: str = "Unknown") -> str:
+    prompt_template = ChatPromptTemplate.from_messages(
+        [
+            ("system", SYSTEM_PROMPT_ANSWER),
+            ("user", USER_PROMPT_ANSWER),
+        ]
+    )
+
+    model = get_deepseekv3_model()
+    parser = StrOutputParser()
+
+    chain = prompt_template | model | parser
+    return chain.stream(
+        {
+            "question": question,
+            "chat_history": chat_history,
+            "search_result": search_result,
+            "username": username,
+        }
+    )
+
 def get_llm_model():
     groq_llm = get_groq_model()
     deepseekv3_llm = get_deepseekv3_model()

@@ -147,6 +147,8 @@ def render_ui():
                         icon=":material/headphones:"),
                     st.Page("sub_pages/chat_dsr1.py", title="dsChatR1",
                         icon=":material/headphones:"),
+                    st.Page("sub_pages/chat_dsv3.py", title="dsChatV3",
+                        icon=":material/headphones:"),
                 ]
             )
         else:

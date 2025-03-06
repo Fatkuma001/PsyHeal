@@ -8,7 +8,7 @@ import streamlit as st
 
 # from wrapper.search import search_web
 from wrapper.edge_tts import TextToSpeechConverter
-from wrapper.llm import need_web_search, llm_answer
+from wrapper.llm import need_web_search, llmdsr1_answer,llmdsv3_answer
 from wrapper.supabase import add_chat_data
 
 preset_questions = [
@@ -49,7 +49,7 @@ if "messages" not in st.session_state:
         {
             "role": "assistant",
             "content": f"""
-            嗨，{st.session_state.username},你好，让我们来开启一次元气疗愈之旅！你有任何问题都可以随时来咨询我~比如：\n
+            嗨，{st.session_state.username},你好，让我们来开启一次疗愈之旅！你有任何问题都可以随时来咨询我~比如：\n
             1. {preset_questions[0]}
             2. {preset_questions[1]}
             3. {preset_questions[2]}
@@ -59,9 +59,9 @@ if "messages" not in st.session_state:
 
 
 def render_ui():
-    st.header(":material/school: 我是你的元气疗愈师小月牙")
+    st.header(":material/school: 我是DeepSeekR1")
     st.caption("""
-               :rainbow[“看见，即改变！”] 我是你的专属心理疗愈师小月牙，生活中、工作中任何有压力的部分，想要疗愈的部分都可以告诉我，让我们来开启一段轻松美好的元气疗愈之旅～
+               有什么需要，放马过来～
                """)
 
     for msg in st.session_state.messages:
@@ -75,7 +75,7 @@ def render_ui():
             # if need_web_search(question):
             #     search_result = search_web(question)
 
-            stream_answer = llm_answer(
+            stream_answer = llmdsv3_answer(
                 question, get_chat_history(),
                 search_result=search_result,
                 username=st.session_state.username)

@@ -8,7 +8,7 @@ import streamlit as st
 
 # from wrapper.search import search_web
 from wrapper.edge_tts import TextToSpeechConverter
-from wrapper.llm import need_web_search, llmdsr1_answer
+from wrapper.llm import need_web_search, llmdsr1_answer,llmdsv3_answer
 from wrapper.supabase import add_chat_data
 
 preset_questions = [
